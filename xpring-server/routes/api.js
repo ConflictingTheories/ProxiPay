@@ -22,6 +22,7 @@ const express = require('express');
 const router = express.Router();
 const { XRP_API, XPRING_API, XRP_Wallet, Utils } = require('../lib/XRP.lib');
 const { XrpClient } = require('xpring-js');
+const request = require('request-promise');
 const xrpClient = XPRING_API;
 
 /* GET API List page. */
@@ -106,10 +107,30 @@ router.post('/send_xrp/:rx/secret', function (req, res, next) {
     let seed = secret.replace(/.{1,2}/g, (temp) => String.fromCharCode(parseInt(temp, 16)));
     const wallet = XRP_Wallet.generateWalletFromSeed(seed);
     console.log(wallet);
-    XRP_API.sendXrp(amount, recv, wallet).then((result)=>{
+    XRP_API.sendXrp(amount, recv, wallet).then((result) => {
         res.json(result);
-    }).catch((err)=>res.json(err));
+    }).catch((err) => res.json(err));
 });
+
+
+// Sign Payment w/ Seed (using Xpring -- needs some work - seed is not valid)
+router.get('/payid/:payid', function (req, res, next) {
+    // TODO - Needs to Connect to the XRP Instance
+    let payid = req.params.payid;
+    let url = `https://${payid.split('$')[1]}/${payid.split('$')[0]}`;
+    console.log(url);
+    request({
+        method:'GET',
+        url: 'https://xpring.money/conflictingtheories',
+        headers: {
+            'PayID-Version': '1.0',
+            'Accept': 'application/payid+json'
+        }
+    }, (result) => {
+        res.json(result);
+    })
+});
+
 
 
 // Sign Offer w/ Secret
