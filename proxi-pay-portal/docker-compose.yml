@@ -1,0 +1,12 @@
+version: '3'
+services:
+  proxi-pay-portal:
+    container_name: 'proxi-pay-portal'
+    image: proxi-pay:latest
+    build:
+      context: .
+    # Port mapping, external_port:internal_port
+    ports:
+      - '8000:8000'
+    environment:
+      - PORT=8000

@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "node bin/ProxiPay",
-        "build": "./build-dist.sh",
+        "build": "bash build-dist.sh",
         "build-win": "./build-dist.ps1"
     },
     "dependencies": {

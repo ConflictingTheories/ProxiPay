@@ -1,0 +1,12 @@
+version: '3'
+services:
+  load-balancer:
+    container_name: 'nginx'
+    image: nginx
+    build:
+      context: .
+    # Port mapping, external_port:internal_port
+    ports:
+      - '80:80'
+      - '8080:8080'
+ 
