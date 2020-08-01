@@ -20,11 +20,11 @@ module.exports = {
     GOOGLE_APIKEY: "",
     STRIPE_APIKEY: "",
     SENDGRID_APIKEY: "",
-    // For Ripple Direct (Non Xpring SDK)
-    XRP_HOST: "s1.ripple.com",
-    XRP_PORT: "51234",
+    // For Ripple Direct (TestNet)
+    XRP_HOST: "s.altnet.rippletest.net",
+    XRP_PORT: "51235",
     XRP_PROTOCOL: "https://",
-    // Xpring SDK
-    XPRING_HOST: "main.xrp.xpring.io",
+    // Xpring SDK (Test Net)
+    XPRING_HOST: "test.xrp.xpring.io",
     XPRING_PORT: "50051",
 };

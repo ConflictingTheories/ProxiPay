@@ -19,8 +19,7 @@ const websocket = require('websocket');
 const wsClient = new websocket.w3cwebsocket(`${Env.XRP_PROTOCOL}${Env.XRP_HOST}:${Env.XRP_PORT}`);
 
 const { Wallet, XrpClient, XrplNetwork, Utils } = require("xpring-js");
-
-console.log(wsClient);
+const xrpClient = new XrpClient(`${Env.XPRING_HOST}:${Env.XPRING_PORT}`, XrplNetwork.Test);
 
 wsClient.onmessage = (x)=>console.log("@@@@ -- ",x);
 // Websocket to Node Connection
@@ -123,7 +122,8 @@ const XRP_API = {
         return XRP_API.signTxnSecret(txJson, secret);
     },
     sendXrp: (amount, account, wallet) =>{
-        return XrpClient.send(amount, account, wallet.wallet);
+        console.log(wallet, amount, account);
+        return xrpClient.send(amount, account, wallet.wallet);
     },
     // Send a Payment
     signPaymentSecret: (amount, currency, sender, issuer, recv, secret) => {
@@ -235,4 +235,4 @@ const XRP_API = {
 }
 
 
-module.exports = { XRP_API, XPRING_API: new XrpClient(`${Env.XPRING_HOST}:${Env.XPRING_PORT}`, XrplNetwork.Test), XRP_Wallet: Wallet, Utils: Utils };
+module.exports = { XRP_API, XPRING_API: xrpClient, XRP_Wallet: Wallet, Utils: Utils };

@@ -82,7 +82,7 @@ router.post('/account/:tx/flag/:flg', function (req, res, next) {
 
 
 // Sign Payment w/ Secret
-router.post('/send_payment/:tx/:rx/secret', function (req, res, next) {
+router.post('/send_payment_node/:tx/:rx/secret', function (req, res, next) {
     // TODO - Needs to Connect to the XRP Instance
     let sender = req.params.tx;
     let recv = req.params.rx;
@@ -96,6 +96,23 @@ router.post('/send_payment/:tx/:rx/secret', function (req, res, next) {
             res.json(result);
         })
         .catch((err) => res.json(err))
+});
+
+
+// Sign Payment w/ Secret
+router.post('/send_payment/:tx/:rx/secret', function (req, res, next) {
+    // TODO - Needs to Connect to the XRP Instance
+    let sender = req.params.tx;
+    let amount = parseFloat(req.body.amount);
+    let cur = req.body.currency;
+    let issuer = req.body.issuer;
+    let seed = req.body.secret;
+    let recv = req.params.rx;
+
+    const wallet = XRP_Wallet.generateWalletFromSeed(seed, true);
+    XRP_API.sendXrp(amount, recv, wallet).then((result) => {
+        res.json(result);
+    }).catch((err) => res.json(err));
 });
 
 // Sign Payment w/ Seed (using Xpring -- needs some work - seed is not valid)

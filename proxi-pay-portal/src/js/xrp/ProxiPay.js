@@ -343,10 +343,10 @@ function sharePaymentLink() {
     let issuer = $('#issuerpayment').val();
     let cur = $('#cur-type').val();
     let amount = $('#cur-amount').val();
-    let paymentLink = "https://www.inxrp.com/send/" + cur + "/" + issuer + "/" + amount + "/" + recv;
+    let paymentLink = "http:/proxi.kderbyma.com/send/" + cur + "/" + issuer + "/" + amount + "/" + recv;
 
     if (cur == "drops") {
-        paymentLink = "https://www.inxrp.com/send/" + cur + "/_na_/" + amount + "/" + recv;
+        paymentLink = "http://proxi.kderbyma.com/send/" + cur + "/_na_/" + amount + "/" + recv;
     }
 
     if (cur && amount && (issuer || cur == "drops") && recv) {
