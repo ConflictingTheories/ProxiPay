@@ -8,6 +8,14 @@ From the portal you can setup a new wallet and using the credentials (assuming t
 #### Public Node 
 This is currently using a **Testnet** Public Ripple Node (https://s.altnet.rippletest.net:51235) for the JSON-RPC calls.
 
+#### Dependencies
+This package is built on Node.JS, NPM (or Yarn), and Docker.
+
+## Usage / How to Run
+
+To get started, you can easily run the platform with docker using the `proxi-pay.ps1` (windows) or `proxi-pay.sh` (mac & linux).
+
+This will 
 
 **SECURITY DISCLAIMER: Use common sense. Make sure you always keep your seeds and private keys and passphrases secured. I will not be responsible for any loss of funds due to user mistake or ignorance or incompetence.**
 
