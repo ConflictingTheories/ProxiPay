@@ -15,7 +15,7 @@ This package is built on Node.JS, NPM (or Yarn), and Docker.
 
 To get started, you can easily run the platform with docker using the `proxi-pay.ps1` (windows) or `proxi-pay.sh` (mac & linux).
 
-This will 
+This will run docker and spin the containers - Note: You may need to edit the `nginx.conf` file for the loadbalancer if you want different ports or SSL and or Domain name settings.
 
 **SECURITY DISCLAIMER: Use common sense. Make sure you always keep your seeds and private keys and passphrases secured. I will not be responsible for any loss of funds due to user mistake or ignorance or incompetence.**
 
