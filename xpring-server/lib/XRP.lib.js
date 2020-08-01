@@ -218,6 +218,19 @@ const XRP_API = {
             txJson.TakerPays = amount;
         }
         return XRP_API.signTxnSecret(txJson, secret);
+    },
+    // Fetch PayID
+    getPayIdInfo: async (payid)=>{
+         let url = `https://${payid.split('$')[1]}/${payid.split('$')[0]}`;
+         return await request({
+            method:'GET',
+            url: url,
+            json:true,
+            headers: {
+                'PayID-Version': '1.0',
+                'Accept': 'application/payid+json'
+            }
+        });
     }
 }
 

@@ -17,6 +17,9 @@
 var walletAcctCode = null;
 var walletMastCode = null;
 var walletPubCode = null;
+var payidInUse = false;
+var payidAddr = null;
+
 // Generate Wallet
 function genWallet() {
 
@@ -190,22 +193,47 @@ function updateSender() {
 function updateRecv() {
     $("#qrcode_recv").html();
     let recv = $('#rx-account').val();
-    if (String(recv).length == 34) {
-        if (recvCode) {
-            recvCode.clear();
-            recvCode.makeCode(recv);
-        } else {
-            recvCode = new QRCode(document.getElementById("qrcode_recv"), recv);
-        }
-        M.toast({
-            html: 'Receiver Set!'
+
+    if (recv.indexOf('$') >= 0) {
+        $.ajax({
+            url: "/api/payid/" + recv,
+            method: "get",
+            success: function (result) {
+                let addr = result.addresses.filter(x => x.paymentNetwork === 'XRPL')[0].addressDetails.address;
+                payidAddr = addr;
+                payidInUse = true;
+                if (recvCode) {
+                    recvCode.clear();
+                    recvCode.makeCode(addr);
+                } else {
+                    recvCode = new QRCode(document.getElementById("qrcode_recv"), addr);
+                }
+                M.toast({
+                    html: 'PayID Found - Receiver Set!'
+                })
+            }
         })
+    } else {
+        payidInUse = false;
+        if (String(recv).length == 34) {
+            payidAddr = recv;
+            if (recvCode) {
+                recvCode.clear();
+                recvCode.makeCode(recv);
+            } else {
+                recvCode = new QRCode(document.getElementById("qrcode_recv"), recv);
+            }
+            M.toast({
+                html: 'Receiver Set!'
+            })
+        }
     }
+
 }
 // Send Payment
 function sendPayment() {
     let send = $('#send-account').val();
-    let recv = $('#rx-account').val();
+    let recv = payidAddr || '';
     let issuer = $('#issuerpayment').val();
     let cur = $('#cur-type').val();
     let amount = $('#cur-amount').val();
@@ -273,7 +301,7 @@ function sendPayment() {
 }
 
 function sendXrpPayment() {
-    let recv = $('#rx-account').val();
+    let recv = payidAddr || '';
     let amount = $('#cur-amount').val();
     let seed = $('#seed').val();
     // Drop
@@ -311,7 +339,7 @@ function sendXrpPayment() {
 }
 
 function sharePaymentLink() {
-    let recv = $('#rx-account').val();
+    let recv = payidAddr || '';
     let issuer = $('#issuerpayment').val();
     let cur = $('#cur-type').val();
     let amount = $('#cur-amount').val();
