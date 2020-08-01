@@ -1,0 +1,71 @@
+ * {
+     word-break: break-all;
+ }
+ 
+ nav {
+     font-weight: bold;
+ }
+ 
+ .show-print {
+     display: none;
+ }
+ 
+ .proxipay {
+     border: none;
+     width: 100%;
+     border-bottom: 5px darkslateblue solid;
+ }
+ 
+ @media print {
+     body {
+         background-color: #FFFFFF;
+         background-image: none;
+         color: #000000
+     }
+     body {
+         width: 100%;
+     }
+     .show-print {
+         display: block;
+     }
+     .no-print {
+         display: none;
+     }
+ }
+ 
+ body {
+     padding: 50px;
+     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+ }
+ 
+ a {
+     color: slateblue;
+ }
+ 
+ html,
+ body {
+     width: 100%;
+     height: 100%;
+     margin: 0;
+     padding: 0;
+     border: 0;
+ }
+ 
+ footer {
+     position: absolute;
+     bottom: 0;
+     right: 0;
+     font-size: 12px;
+     padding: 10px;
+     color: #333;
+     letter-spacing: 1px;
+     font-family: 'Inconsolata', monospace;
+ }
+ 
+ footer a {
+     color: slateblue;
+ }
+
+ .btn, .btn:hover {
+    background-color: lightcoral;
+ }
