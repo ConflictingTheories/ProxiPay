@@ -19,7 +19,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// var compression = require('compression');
+var compression = require('compression');
 var DB = require('./lib/database.lib');
 
 // ---- ROUTES
@@ -39,7 +39,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 // Favicon (Needs one)
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // Logging
 app.use(logger('dev'));
 // Parsing (JSON)
@@ -51,7 +51,7 @@ app.use(cookieParser());
 // Public Directory
 app.use(express.static(path.join(__dirname, 'public')));
 // Compression
-// app.use(compression);
+app.use(compression);
 
 // ---- API ROUTES
 //
