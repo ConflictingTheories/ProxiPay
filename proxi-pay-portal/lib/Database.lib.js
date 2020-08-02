@@ -13,11 +13,10 @@
 
 // MySQL Libary
 // var SQL = require('mysql2');
-var SQL = require('mysql');
+var SQL = require('mysql2');
 
 // Environment Variables
-// Environment Variables
-const ENV = require('../etc/Env.conf.js');
+const ENV = require('../etc/config.js');
 
 // CONFIGURATION
 const DB_HOST = ENV.DB_HOST;
@@ -39,13 +38,6 @@ const DB_CLIENT = SQL.createPool({
 });
 
 console.log(DB_CLIENT);
-
-// SQL.createConnection({
-//     host: DB_HOST,
-//     user: DB_USER,
-//     password: DB_PASS,
-//     database: DB_NAME
-// });
 
 // OBJECT
 function Database() {
@@ -86,7 +78,7 @@ function Database() {
     function queryDB(conn, query) {
         console.log("QUERYING DB", query)
         return new Promise((resolve, reject) => {
-            conn.query(query, function(error, results, fields) {
+            conn.query(query, function (error, results, fields) {
                 if (error)
                     reject(error);
                 else
@@ -263,6 +255,47 @@ function Database() {
         });
     }
 
+    function _upsert(table, inObject, whObject, limit) {
+        return new Promise((resolve, reject) => {
+            let userQuery = selectDB(search, table, whObject, limit);
+            connectDB().then((conn) => {
+                queryDB(conn, userQuery)
+                    .then((lookup) => {
+                        if (lookup.results.length > 0) {
+                            let query = updateDB(table, inObject, whObject, limit);
+                            queryDB(conn, query)
+                                .then((lookup) => {
+                                    releaseDB(conn);
+                                    resolve(lookup);
+                                })
+                                .catch((err) => {
+                                    releaseDB(conn);
+                                    reject(err);
+                                });
+                        } else {
+                            let query = insertDB(table, inObject);
+                            queryDB(conn, query)
+                                .then((lookup) => {
+                                    releaseDB(conn);
+                                    resolve(lookup);
+                                })
+                                .catch((err) => {
+                                    releaseDB(conn);
+                                    reject(err);
+                                });
+                        }
+                    })
+                    .catch((err) => {
+                        releaseDB(conn);
+                        reject(err);
+                    });
+            }).catch((err) => {
+                console.error(err)
+                reject(err);
+            });
+        });
+    }
+
     function _select(search, table, whObject, limit) {
         return new Promise((resolve, reject) => {
             let userQuery = selectDB(search, table, whObject, limit);
@@ -339,6 +372,7 @@ function Database() {
         // Complete Encapsulated Functions
         query: _query,
         insert: _insert,
+        upsert: _upsert,
         update: _update,
         delete: _delete,
         select: _select,

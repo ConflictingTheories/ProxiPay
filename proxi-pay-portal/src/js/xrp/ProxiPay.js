@@ -269,6 +269,12 @@ function sendPayment() {
                         method: "post",
                         data: paymentRequest,
                         success: function (result) {
+                            if(result.errorType === 5){
+                                M.toast({
+                                    html: 'Error! - Account not Found or Insufficient Balance to Fund Account'
+                                })
+                                return;
+                            }
                             console.log(result.result)
                             let obj = result.result;
                             if (obj.error) {

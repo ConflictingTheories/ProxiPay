@@ -10,6 +10,7 @@
 // sale of this work is strictly \\
 // prohibited.                   \\
 \* ------------------------------ */
+
 // Configurationss
 var Env = require('../etc/Env.conf')
 
@@ -21,7 +22,7 @@ const wsClient = new websocket.w3cwebsocket(`${Env.XRP_PROTOCOL}${Env.XRP_HOST}:
 const { Wallet, XrpClient, XrplNetwork, Utils } = require("xpring-js");
 const xrpClient = new XrpClient(`${Env.XPRING_HOST}:${Env.XPRING_PORT}`, XrplNetwork.Test);
 
-wsClient.onmessage = (x)=>console.log("@@@@ -- ",x);
+wsClient.onmessage = (x) => console.log("@@@@ -- ", x);
 // Websocket to Node Connection
 wsClient.onopen = () => {
     console.log('WebSocket Client Connected');
@@ -31,10 +32,16 @@ wsClient.onopen = () => {
         "account": "rN7n7otQDd6FczFgLdSqtcsAUxDkw6fzRH",
         "destination_account": "rf1BiGeXwwQoi8Z2ueFYTEXSwuJYfV2Jpn",
         "ledger_index": "validated"
-      });
+    });
 }
 // Main API Object
 const XRP_API = {
+    toXaddress: (addr) => {
+        return Utils.isValidClassicAddress(acctId) ? Utils.encodeXAddress(acctId) : Utils.isValidXAddress(acctId) ? acctId : false;
+    },
+    toClassicAddress: (addr) => {
+        return Utils.isValidClassicAddress(acctId) ? acctId : Utils.isValidXAddress(acctId) ? Utils.decodeXAddress(acctId) : false;
+    },
     // Propose a Wallet
     gen_wallet: (algo) => {
         // XRP Command
@@ -71,7 +78,7 @@ const XRP_API = {
                     body: rpcRequest,
                     uri: Env.XRP_PROTOCOL + Env.XRP_HOST + ":" + Env.XRP_PORT,
                     json: true,
-                    headers: {"Content-Type":"application/json"}
+                    headers: { "Content-Type": "application/json" }
                 };
                 console.log(JSON.stringify(reqOptions));
                 // Submit
@@ -97,7 +104,7 @@ const XRP_API = {
                 "tx_blob": txBlob
             }]
         };
-        return XRP_API.sendRequest(rpcRequest,true);
+        return XRP_API.sendRequest(rpcRequest, true);
     },
     // Transactions 
     signTxnSecret: (txJson, secret) => {
@@ -121,7 +128,7 @@ const XRP_API = {
         };
         return XRP_API.signTxnSecret(txJson, secret);
     },
-    sendXrp: (amount, account, wallet) =>{
+    sendXrp: (amount, account, wallet) => {
         console.log(wallet, amount, account);
         return xrpClient.send(amount, account, wallet.wallet);
     },
@@ -220,12 +227,12 @@ const XRP_API = {
         return XRP_API.signTxnSecret(txJson, secret);
     },
     // Fetch PayID
-    getPayIdInfo: async (payid)=>{
-         let url = `https://${payid.split('$')[1]}/${payid.split('$')[0]}`;
-         return await request({
-            method:'GET',
+    getPayIdInfo: async (payid) => {
+        let url = `https://${payid.split('$')[1]}/${payid.split('$')[0]}`;
+        return await request({
+            method: 'GET',
             url: url,
-            json:true,
+            json: true,
             headers: {
                 'PayID-Version': '1.0',
                 'Accept': 'application/payid+json'

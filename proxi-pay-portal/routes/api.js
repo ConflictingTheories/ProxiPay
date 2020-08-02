@@ -30,7 +30,6 @@ router.get('/', function (req, res, next) {
     res.render('apilist', { title: 'API - Command List' });
 });
 
-
 // Generates new Wallet Information
 router.get('/gen_wallet', function (req, res, next) {
     // TODO - Needs to Connect to the XRP Instance
@@ -52,13 +51,13 @@ router.get('/gen_wallet', function (req, res, next) {
 router.get('/check_acct/:id', async function (req, res, next) {
     // TODO - Needs to Connect to the XRP Instance
     let acctId = req.params.id;
-    const addrLookup = Utils.isValidClassicAddress(acctId) ? Utils.encodeXAddress(acctId) : Utils.isValidXAddress(acctId) ? acctId : null;
-    // if (await xrpClient.accountExists(addrLookup)) {
+    // if (await xrpClient.accountExists(XRP_API.toXAddress(acctId))) {
     //     res.json(await xrpClient.getBalance(addrLookup))
     // } else {
     //     res.json({ error: true, acct: acctId, addrLookup: addrLookup })
     // }
-    XRP_API.account_info(acctId)
+    
+    XRP_API.account_info(XRP_API.toClassicAddress(acctId))
         .then((result) => {
             res.json(result);
         })

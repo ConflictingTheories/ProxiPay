@@ -1,0 +1,11 @@
+version: '3'
+services:
+  xrpl-server:
+    container_name: 'xrpl-server'
+    image: xrpl:latest
+    restart: always
+    build:
+      context: .
+    ports:
+      - '5005:5005'
+      - '6005:6005'

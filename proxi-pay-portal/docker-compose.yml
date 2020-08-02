@@ -3,10 +3,26 @@ services:
   proxi-pay-portal:
     container_name: 'proxi-pay-portal'
     image: proxi-pay:latest
+    restart: always
     build:
       context: .
-    # Port mapping, external_port:internal_port
     ports:
       - '8000:8000'
     environment:
-      - PORT=8000
+      - PORT: 8000
+      - DB_HOST: localhost
+      - DB_USER: proxi-pay-api
+      - DB_PASS: proxi-pay-pass
+      - DB_NAME: proxi-pay
+  proxi-pay-db:
+    container_name: 'proxi-pay-db'
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD: Pr0xiP@y!sAwe$om3
+      - MYSQL_USER: proxi-pay-api
+      - MYSQL_PASSWORD: proxi-pay-pass
+      - MYSQL_DATABASE: proxi-pay

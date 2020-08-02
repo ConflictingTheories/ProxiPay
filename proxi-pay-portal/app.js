@@ -19,12 +19,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var compression = require('compression');
+// var compression = require('compression');
+var DB = require('./lib/Database.lib');
 
 // ---- ROUTES
 //
 var index = require('./routes/index');
 var api = require('./routes/api');
+var auth = require('./routes/auth')(DB);
 
 // ---- APP SERVER
 //
@@ -55,6 +57,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //
 // Index API Calls
 app.use('/', index);
+// Authentication Calls
+app.use('/auth', auth);
 // XRP Server Calls
 app.use('/api', api);
 
