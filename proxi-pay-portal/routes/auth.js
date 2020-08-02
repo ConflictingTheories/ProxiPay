@@ -17,15 +17,15 @@ var router = express.Router({
 });
 
 // Custom Libraries
-var P = require('../../lib/patterns.lib.js');
-var Error = require('../../lib/error.lib.js');
-var Hash = require('../../lib/hash.lib.js');
+var P = require('../lib/patterns.lib.js');
+var Error = require('../lib/error.lib.js');
+var Hash = require('../lib/hash.lib.js');
 
 module.exports = (DB) => {
 
     // Middlewares
-    const chkSessionMW = require('../../middleware/chk-session.mw.js')(DB);
-    const chkUserMW = require('../../middleware/chk-user.mw.js')(DB);
+    const chkSessionMW = require('../middleware/chk-session.mw.js')(DB);
+    const chkUserMW = require('../middleware/chk-user.mw.js')(DB);
 
     // GET /auth
     router.get('/', chkSessionMW.bind(null, false), chkUserMW, (req, res) => {
