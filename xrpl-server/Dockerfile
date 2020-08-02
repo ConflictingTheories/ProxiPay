@@ -1,7 +1,7 @@
 FROM centos:7
 ADD ./config/ripple.repo /etc/yum.repos.d/ripple.repo
 RUN yum -y update
-RUN yum install rippled
+RUN yum install rippled -y
 RUN systemctl daemon-reload
 RUN systemctl enable rippled.service
 RUN systemctl start rippled.service

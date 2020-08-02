@@ -1,12 +1,9 @@
 /* ----------------------------- *\
 //                               \\
-//     XRP- Proof Of Concept     \\
+//  ProxiPay - Proof Of Concept  \\
 // ----------------------------- \\
-//      Copyright (c) 2018       \\
+//      Copyright (c) 2020       \\
 //      Kyle Derby MacInnis      \\
-//      -------------------      \\
-//          Created for          \\
-//           Wolf Mask           \\
 // ----------------------------- \\
 // All Rights Reserved. Any Un-  \\
 // authorized disribution and/or \\
@@ -20,10 +17,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { XRP_API, XPRING_API, XRP_Wallet, Utils } = require('../lib/XRP.lib');
-const { XrpClient } = require('xpring-js');
-const request = require('request-promise');
-const xrpClient = XPRING_API;
+const { XRP_API, XRP_Wallet } = require('../lib/XRP.lib');
 
 /* GET API List page. */
 router.get('/', function (req, res, next) {
@@ -50,13 +44,7 @@ router.get('/gen_wallet', function (req, res, next) {
 // Fetch Account Information 
 router.get('/check_acct/:id', async function (req, res, next) {
     // TODO - Needs to Connect to the XRP Instance
-    let acctId = req.params.id;
-    // if (await xrpClient.accountExists(XRP_API.toXAddress(acctId))) {
-    //     res.json(await xrpClient.getBalance(addrLookup))
-    // } else {
-    //     res.json({ error: true, acct: acctId, addrLookup: addrLookup })
-    // }
-    
+    let acctId = req.params.id;   
     XRP_API.account_info(XRP_API.toClassicAddress(acctId))
         .then((result) => {
             res.json(result);

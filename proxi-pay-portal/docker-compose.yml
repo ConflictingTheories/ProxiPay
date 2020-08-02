@@ -9,11 +9,11 @@ services:
     ports:
       - '8000:8000'
     environment:
-      - PORT: 8000
-      - DB_HOST: localhost
-      - DB_USER: proxi-pay-api
-      - DB_PASS: proxi-pay-pass
-      - DB_NAME: proxi-pay
+      PORT: 8000
+      DB_HOST: localhost
+      DB_USER: proxi-pay-api
+      DB_PASS: proxi-pay-pass
+      DB_NAME: proxi-pay
   proxi-pay-db:
     container_name: 'proxi-pay-db'
     image: mysql
@@ -22,7 +22,7 @@ services:
     ports:
       - '3306:3306'
     environment:
-      - MYSQL_ROOT_PASSWORD: Pr0xiP@y!sAwe$om3
-      - MYSQL_USER: proxi-pay-api
-      - MYSQL_PASSWORD: proxi-pay-pass
-      - MYSQL_DATABASE: proxi-pay
+      MYSQL_ROOT_PASSWORD: Pr0xiP@y!sAwe$om3
+      MYSQL_USER: proxi-pay-api
+      MYSQL_PASSWORD: proxi-pay-pass
+      MYSQL_DATABASE: proxi-pay
