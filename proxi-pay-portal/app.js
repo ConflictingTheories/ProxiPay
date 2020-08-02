@@ -20,7 +20,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 // var compression = require('compression');
-var DB = require('./lib/Database.lib');
+var DB = require('./lib/database.lib');
 
 // ---- ROUTES
 //

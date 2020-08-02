@@ -14,7 +14,7 @@ docker build . -t proxi-pay
 docker-compose up -d
 
 cd $start/xrpl-server
-docker build . -t xrpl
-docker-compose up -d
+docker build . -t xrpl --privileged
+docker-compose up -d 
 
 cd $start
