@@ -17,6 +17,29 @@ To get started, you can easily run the platform with docker using the `proxi-pay
 
 This will run docker and spin the containers - Note: You may need to edit the `nginx.conf` file for the loadbalancer if you want different ports or SSL and or Domain name settings.
 
+**Directories:**
+
+- `/nginx-lb` is the Load Balancer and Primary Public Interface
+- `/payid-server` is a fork of the PayID Repo - It provides the PayID functionality
+- `/proxi-pay-portal` is the ProxiPay portal and Public Dashboard
+- `/xrpl-server` is a Lite Ripple Node (For XRP Specifics like Trust Lines and Order Book Management)
+
+
 **SECURITY DISCLAIMER: Use common sense. Make sure you always keep your seeds and private keys and passphrases secured. I will not be responsible for any loss of funds due to user mistake or ignorance or incompetence.**
 
-    Copyright 2020 (c) Kyle Derby MacInnis
+    Copyright 2020 (c) Kyle Derby MacInnis (see https://kyledm.ca)
+
+
+
+#### Other Links
+
+* Proxi Network: https://proxi.network
+* ProxiPay Demo: http://proxi.kderbyma.com
+* ProxiPay PayID: http://payid.kderbyma.com
+
+#### References
+
+* PayID : https://payid.org
+* DevPost Hackathon : https://payid.devpost.com
+* Xpring : https://xpring.io
+* Ripple : https://ripple.com
