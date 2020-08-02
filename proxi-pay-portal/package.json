@@ -16,7 +16,7 @@
         "express": "^4.17.1",
         "htmlparser2": "^3.9.2",
         "morgan": "^1.10.0",
-        "mysql": "^2.14.1",
+        "mysql2": "^2.1.0",
         "node-cron": "^1.2.1",
         "nodemon": "^1.18.5",
         "request": "^2.83.0",
