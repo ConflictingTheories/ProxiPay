@@ -16,7 +16,7 @@
 var SQL = require('mysql2');
 
 // Environment Variables
-const ENV = require('../etc/config.js');
+const ENV = require('../etc/Env.conf.js');
 
 // CONFIGURATION
 const DB_HOST = ENV.DB_HOST;

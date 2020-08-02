@@ -4,6 +4,7 @@ services:
     container_name: 'xrpl-server'
     image: xrpl:latest
     restart: always
+    privileged: true
     build:
       context: .
     ports:
