@@ -72,6 +72,7 @@ const XRP_API = {
     },
     createPayID: (payidObj) => {
         return axios({
+            method: 'post',
             url: `http://payid_server:8081/users`,
             data: payidObj,
             headers: { "PayID-API-Version": "2020-08-01", "Content-Type": "application/json" }

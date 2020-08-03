@@ -19,4 +19,4 @@ CMD certbot --nginx \
   --email kyle@kderbyma.com \
   --domains proxi.kderbyma.com \
   --domains payid.kderbyma.com \
-  && tail -f /var/log/nginx/access.log
+  && tail -f /dev/null
