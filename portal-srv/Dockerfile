@@ -4,6 +4,6 @@ RUN npm install nodemon --global
 RUN npm install uglifycss uglifyjs --global
 WORKDIR /app
 ADD . /app
-RUN yarn
+RUN yarn && yarn build
 EXPOSE 8000
 CMD ["yarn", "start"] 

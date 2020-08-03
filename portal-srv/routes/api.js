@@ -44,9 +44,10 @@ router.get('/gen_wallet', async function (req, res, next) {
             }
         ]
     };
-    try{
-    const payid = await XRP_API.createPayID(payidObj);
-    }catch(e){
+    var payid = null;
+    try {
+        payid = await XRP_API.createPayID(payidObj);
+    } catch (e) {
         console.log(e);
     }
     res.json({
