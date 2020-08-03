@@ -1,8 +1,5 @@
 $start = $pwd
 
-# Docker Network for the Containers
-docker network create proxi-network
-
 # Spins up Docker Containers for Each Component
 
 # Load Balancer (Public Facing)

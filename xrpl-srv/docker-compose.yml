@@ -1,8 +1,7 @@
-version: '3'
+version: '3.5'
 services:
-  xrpl-server:
+  xrpl_server:
     container_name: 'xrpl-server'
-    hostname: 'xrpl.proxi.lan'
     image: xrpl:latest
     restart: always
     build:
@@ -12,5 +11,4 @@ services:
       - '6006:6006'
 networks:
   default:
-    external: true
     name: proxi-network

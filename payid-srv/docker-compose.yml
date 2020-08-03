@@ -1,8 +1,7 @@
-version: '3'
+version: '3.5'
 services:
   payid_server:
     container_name: 'payid-server'
-    hostname: 'payid.proxi.lan'
     image: payid:latest
     restart: always
     build:
@@ -24,7 +23,6 @@ services:
       ]
   db:
     container_name: payid-database
-    hostname: 'payid-db.proxi.lan'
     image: postgres:12-alpine
     restart: always
     ports:
@@ -34,5 +32,4 @@ services:
       - POSTGRES_DB=database_development
 networks:
   default:
-    external: true
     name: proxi-network

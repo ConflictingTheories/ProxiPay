@@ -31,7 +31,7 @@ module.exports = {
     // XRP_PORT: "51235",
     // XRP_PROTOCOL: "https://",
     // XRP Lite Node (Docker Container)
-    XRP_HOST: "xrpl.proxi.lan",
+    XRP_HOST: "xrpl_server",
     XRP_PORT: "5005",
     XRP_PROTOCOL: "http://",
     // Xpring SDK (Test Net)
