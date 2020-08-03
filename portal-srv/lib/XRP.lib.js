@@ -15,7 +15,7 @@
 var Env = require('../etc/Env.conf')
 
 // External Libraries
-const request = require('request-promise');
+const axios = require('axios');
 const websocket = require('websocket');
 const wsClient = new websocket.w3cwebsocket(`${Env.XRP_PROTOCOL}${Env.XRP_HOST}:${Env.XRP_PORT}`);
 
@@ -77,14 +77,13 @@ const XRP_API = {
                 // Options for POST
                 let reqOptions = {
                     method: "POST",
-                    body: rpcRequest,
-                    uri: Env.XRP_PROTOCOL + Env.XRP_HOST + ":" + Env.XRP_PORT,
-                    json: true,
+                    data: rpcRequest,
+                    url: Env.XRP_PROTOCOL + Env.XRP_HOST + ":" + Env.XRP_PORT,
                     headers: { "Content-Type": "application/json" }
                 };
                 console.log(JSON.stringify(reqOptions));
                 // Submit
-                resolve(request(reqOptions))
+                resolve(axios(reqOptions))
             } else {
                 if (wsClient && wsClient.connected) {
                     wsClient.onmessage = (result) => {
@@ -231,10 +230,9 @@ const XRP_API = {
     // Fetch PayID
     getPayIdInfo: async (payid) => {
         let url = `https://${payid.split('$')[1]}/${payid.split('$')[0]}`;
-        return await request({
+        return await axios({
             method: 'GET',
             url: url,
-            json: true,
             headers: {
                 'PayID-Version': '1.0',
                 'Accept': 'application/payid+json'

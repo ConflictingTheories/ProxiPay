@@ -1,7 +1,5 @@
 FROM node:12-alpine
 
-LABEL maintainer="Florent Uzio <fuzio@ripple.com>"
-
 WORKDIR /opt
 
 RUN mkdir payid
