@@ -236,7 +236,7 @@ const XRP_API = {
     },
     // Fetch PayID
     getPayIdInfo: async (payid) => {
-        let url = `https://${payid.split('$')[1]}/${payid.split('$')[0]}`;
+        let url = `http://${payid.split('$')[1]}/${payid.split('$')[0]}`;
         return await axios({
             method: 'GET',
             url: url,
