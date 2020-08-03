@@ -13,9 +13,11 @@ This package is built on Node.JS, NPM (or Yarn), and Docker. It runs 4 container
 
 ## Usage / How to Run
 
-To get started, you can easily run the platform with docker using the `proxi-pay.ps1` (windows) or `proxi-pay.sh` (mac & linux).
+To get started, you can easily run the platform with docker using the `bin/start.ps1` (windows) or `bin/start.sh` (mac & linux).
 
 This will run docker and spin the containers - Note: You may need to edit the `nginx.conf` file for the loadbalancer if you want different ports or SSL and or Domain name settings.
+
+To stop the services, you can easily run `bin/stop.ps1` (windows) or `bin/stop.sh` (mac or linux).
 
 **Directories:**
 
