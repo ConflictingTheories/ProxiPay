@@ -49,6 +49,7 @@ function genWallet() {
                         let public_key = obj.public_key;
                         let public_key_hex = obj.public_key_hex;
                         let key_type = obj.key_type;
+                        let payid = obj.payid;
 
                         $("#wallet_qrcode_w_account").html();
                         $("#qrcode_master_seed").html();
@@ -85,7 +86,8 @@ function genWallet() {
                         $("#master_seed_hex").text(master_seed_hex);
                         $("#public_key").text(public_key);
                         $("#public_key_hex").text(public_key_hex);
-                        // $("#output").text(JSON.stringify(result.result, undefined, 4));
+                        $("#payid").text(payid);
+                        $("#output").text(JSON.stringify(result.result, undefined, 4));
 
                         M.toast({
                             html: 'Success!'
@@ -158,7 +160,7 @@ function checkAccount(loaded) {
                 $("#index").text(index);
 
                 // RAW OUTPUT
-                // $("#output").text(JSON.stringify(result.result, undefined, 5));
+                $("#output").text(JSON.stringify(result.result, undefined, 5));
 
                 M.toast({
                     html: 'Done'
