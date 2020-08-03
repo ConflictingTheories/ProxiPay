@@ -47,13 +47,13 @@ router.get('/gen_wallet', async function (req, res, next) {
     var payid = null;
     try {
         payid = await XRP_API.createPayID(payidObj);
+        console.log(payid);
     } catch (e) {
         console.log(e);
     }
     res.json({
         result: {
             payid: `${payidprefix}$${PAYID_DOMAIN}`,
-            payidResult: payid || null,
             master_key: result.mnemonic,
             master_seed: result.wallet.privateKey,
             account_id: result.wallet.getAddress(),

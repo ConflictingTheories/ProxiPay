@@ -11,7 +11,7 @@
 // prohibited.                   \\
 \* ------------------------------ */
 
-const API_URL="https://proxi-001.kderbyma.com"
+const API_URL="https://portal.proxi.network"
 
 
 // WALLET GENERATOR FUNCTIONS

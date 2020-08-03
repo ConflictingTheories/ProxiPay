@@ -38,5 +38,5 @@ module.exports = {
     XPRING_HOST: "test.xrp.xpring.io",
     XPRING_PORT: "50051",
     // PayID
-    PAYID_DOMAIN: "payid-001.kderbyma.com",
+    PAYID_DOMAIN: "payid.proxi.network",
 };

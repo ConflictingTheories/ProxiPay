@@ -36,8 +36,8 @@ To stop the services, you can easily run `bin/stop.ps1` (windows) or `bin/stop.s
 #### Other Links
 
 * Proxi Network: https://proxi.network
-* ProxiPay Demo: https://proxi-001.kderbyma.com
-* ProxiPay PayID: https://payid-001.kderbyma.com
+* ProxiPay Demo: https://portal.proxi.network
+* ProxiPay PayID: https://payid.proxi.network
 
 #### References
 

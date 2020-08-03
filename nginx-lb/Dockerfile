@@ -17,6 +17,6 @@ CMD certbot --nginx \
   --non-interactive \
   --agree-tos \
   --email kyle@kderbyma.com \
-  --domains proxi-001.kderbyma.com \
-  --domains payid-001.kderbyma.com \
-  && tail -f /var/log/nginx/access.log
+  --domains portal.proxi.network \
+  --domains payid.proxi.network \
+  ; nginx && tail -f /var/log/nginx/access.log
