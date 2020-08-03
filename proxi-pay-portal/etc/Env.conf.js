@@ -27,9 +27,13 @@ module.exports = {
     DB_PASS: process.env.DB_PASS,
     DB_NAME: process.env.DB_NAME,
     // For Ripple Direct (TestNet)
-    XRP_HOST: "s.altnet.rippletest.net",
-    XRP_PORT: "51235",
-    XRP_PROTOCOL: "https://",
+    // XRP_HOST: "s.altnet.rippletest.net",
+    // XRP_PORT: "51235",
+    // XRP_PROTOCOL: "https://",
+    // XRP Lite Node (Docker Container)
+    XRP_HOST: "xrpl.proxi.lan",
+    XRP_PORT: "5005",
+    XRP_PROTOCOL: "http://",
     // Xpring SDK (Test Net)
     XPRING_HOST: "test.xrp.xpring.io",
     XPRING_PORT: "50051",

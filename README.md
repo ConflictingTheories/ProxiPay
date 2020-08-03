@@ -6,7 +6,7 @@ ProxiPay is a Payment Gateway &amp; General wallet service powered by XRP (Rippl
 From the portal you can setup a new wallet and using the credentials (assuming the account is funded) can then perform various actions such as issuing trust lines, currencies, performing trades and exchanges, as well as sending funds (both XRP and Issued Currencies).
 
 #### Public Node 
-This is currently using a **Testnet** Public Ripple Node (https://s.altnet.rippletest.net:51235) for the JSON-RPC calls.
+This is currently using a **Testnet** Public Ripple Node (https://s.altnet.rippletest.net:51235) for the JSON-RPC calls. (There is work being done on spinning up a local Lite Ripple Node via Docker -- xrpl-server)
 
 #### Dependencies
 This package is built on Node.JS, NPM (or Yarn), and Docker.

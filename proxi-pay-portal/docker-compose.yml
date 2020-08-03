@@ -2,6 +2,7 @@ version: '3'
 services:
   proxi-pay-portal:
     container_name: 'proxi-pay-portal'
+    hostname: 'portal.proxi.lan'
     image: proxi-pay:latest
     restart: always
     build:
@@ -16,6 +17,7 @@ services:
       DB_NAME: proxi-pay
   proxi-pay-db:
     container_name: 'proxi-pay-db'
+    hostname: 'portal-db.proxi.lan'
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
