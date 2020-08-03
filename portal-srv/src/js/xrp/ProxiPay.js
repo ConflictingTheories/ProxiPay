@@ -108,6 +108,26 @@ var acctCode = null;
 // Check Account Info
 function checkAccount(loaded) {
     let acct = $('#account_num').val();
+    if (acct.indexOf('$') >= 0) {
+        $.ajax({
+            url: "/api/payid/" + acct,
+            method: "get",
+            success: function (result) {
+                let addr = result.addresses.filter(x => x.paymentNetwork === 'XRPL')[0].addressDetails.address;
+                M.toast({
+                    html: 'PayID Found - Receiver Set!'
+                })
+                fetchDetails(addr);
+            }
+        })
+    } else {
+        payidInUse = false;
+        fetchDetails(acct);
+    }
+};
+
+// Fetch Account Info
+function fetchDetails(acct) {
     if (!loaded) {
         document.location = "/account/" + acct;
     } else {
@@ -168,8 +188,7 @@ function checkAccount(loaded) {
             }
         });
     }
-};
-
+}
 // SEND FUND FUNCTIONS
 // --------------------
 
@@ -271,7 +290,7 @@ function sendPayment() {
                         method: "post",
                         data: paymentRequest,
                         success: function (result) {
-                            if(result.errorType === 5){
+                            if (result.errorType === 5) {
                                 M.toast({
                                     html: 'Error! - Account not Found or Insufficient Balance to Fund Account'
                                 })
@@ -328,7 +347,7 @@ function sendXrpPayment() {
         method: "post",
         data: paymentRequest,
         success: function (result) {
-            if(result.errorType && result.errorType === 5){
+            if (result.errorType && result.errorType === 5) {
                 M.toast({
                     html: 'Invalid Address - Double check it or make sure you send enough funds to open it (22 XRP)!'
                 })

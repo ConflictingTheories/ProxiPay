@@ -24,15 +24,14 @@ router.get('/', function (req, res, next) {
     res.render('apilist', { title: 'API - Command List' });
 });
 
-function genName() {
-    let otps = "abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLMNOPQRSTUV";
-    return 'xxxxxx'.replace(/x/, () => opts[~~((Math.random() * otps.length) % otps.length)]);
-}
+
 // Generates new Wallet Information
-router.get('/gen_wallet', function (req, res, next) {
+router.get('/gen_wallet', async function (req, res, next) {
     const result = XRP_Wallet.generateRandomWallet();
-    const payidprefix = genName();
-    const url = `http://payid.kderbyma.com/users}`;
+    const payidprefix = (() => {
+        let opts = "abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLMNOPQRSTUV";
+        return 'xxxxxxxx'.replace(/x/g, () => opts[~~((Math.random() * opts.length) % opts.length)]);
+    })();
     const payidObj = {
         "payId": `${payidprefix}$payid.kderbyma.com`,
         "addresses": [
@@ -45,15 +44,15 @@ router.get('/gen_wallet', function (req, res, next) {
             }
         ]
     };
-    const payid = await axios({
-        url: url,
-        data: payidObj,
-        headers: { "PayID-API-Version": "1.1.0", "Content-Type": "application/json" }
-    })
+    try{
+    const payid = await XRP_API.createPayID(payidObj);
+    }catch(e){
+        console.log(e);
+    }
     res.json({
         result: {
-            payid: payidprefix,
-            payidResult:payid,
+            payid: `${payidprefix}$payid.kderbyma.com`,
+            payidResult: payid || null,
             master_key: result.mnemonic,
             master_seed: result.wallet.privateKey,
             account_id: result.wallet.getAddress(),

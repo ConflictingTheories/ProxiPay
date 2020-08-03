@@ -70,6 +70,13 @@ const XRP_API = {
         };
         return XRP_API.sendRequest(rpcRequest, true);
     },
+    createPayID: (payidObj) => {
+        return axios({
+            url: `http://payid_server:8081/users`,
+            data: payidObj,
+            headers: { "PayID-API-Version": "1.1.0", "Content-Type": "application/json" }
+        });
+    },
     // Send the server request
     sendRequest: (rpcRequest, rpc) => {
         return new Promise((resolve, reject) => {
