@@ -9,7 +9,7 @@ From the portal you can setup a new wallet and using the credentials (assuming t
 This is currently using a **Testnet** Public Ripple Node (https://s.altnet.rippletest.net:51235) for the JSON-RPC calls. (There is work being done on spinning up a local Lite Ripple Node via Docker -- xrpl-server)
 
 #### Dependencies
-This package is built on Node.JS, NPM (or Yarn), and Docker.
+This package is built on Node.JS, NPM (or Yarn), and Docker. It runs 4 containers and requires about 6-8GB of RAM to operate (when tested on Windows). Exposes Ports 80, 443, and 8080 for public access. Make sure you port forward them, but do not expose any other ports used.
 
 ## Usage / How to Run
 
@@ -19,7 +19,7 @@ This will run docker and spin the containers - Note: You may need to edit the `n
 
 **Directories:**
 
-- `/nginx-lb` is the Load Balancer and Primary Public Interface
+- `/nginx-lb` is the Load Balancer and Primary Public Interface (Uses LetsEncrypt &amp; Certbot for SSL Certificates - Requires valid Domain Name)
 - `/payid-srv` is a fork of the PayID Repo - It provides the PayID functionality
 - `/portal-srv` is the ProxiPay portal and Public Dashboard
 - `/xrpl-srv` is a Lite Ripple Node (For XRP Specifics like Trust Lines and Order Book Management)
