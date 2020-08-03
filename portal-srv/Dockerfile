@@ -1,9 +1,9 @@
 FROM node:latest
-run apt install bash -y
-RUN npm install nodemon -g
-run npm install uglifycss uglifyjs --global
+RUN apt install bash -y
+RUN npm install yarn nodemon --global
+RUN npm install uglifycss uglifyjs --global
 WORKDIR /app
 ADD . /app
-RUN npm install
+RUN yarn
 EXPOSE 8000
-CMD ["npm", "start"] 
+CMD ["yarn", "start"] 
