@@ -11,7 +11,7 @@ ADD ./nginx.conf /etc/nginx/nginx.conf
 RUN mkdir /etc/cron.d/ -p
 RUN echo "0 12 * * * /usr/bin/certbot renew --quiet" > /etc/cron.d/renew.cron
 
-EXPOSE 8080 80 443
+EXPOSE 80 8080 443
 
 CMD certbot --nginx \
   --non-interactive \
@@ -19,4 +19,4 @@ CMD certbot --nginx \
   --email kyle@kderbyma.com \
   --domains portal.proxi.network \
   --domains payid.proxi.network \
-  ; nginx && tail -f /var/log/nginx/access.log
+  ; tail -f /var/log/nginx/access.log

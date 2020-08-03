@@ -75,7 +75,7 @@ const XRP_API = {
             method: 'post',
             url: `http://payid_server:8081/users`,
             data: payidObj,
-            headers: { "PayID-API-Version": "2020-08-01", "Content-Type": "application/json" }
+            headers: { "PayID-API-Version": "2020-06-18", "Content-Type": "application/json" }
         });
     },
     // Send the server request
@@ -237,7 +237,9 @@ const XRP_API = {
     },
     // Fetch PayID
     getPayIdInfo: async (payid) => {
-        let url = `http://${payid.split('$')[1]}/${payid.split('$')[0]}`;
+        let prefix = `${payid.split('$')[0]}`;
+        let domain = `${payid.split('$')[1]}`;
+        let url = `http://${domain}/${prefix}`;
         return await axios({
             method: 'GET',
             url: url,
