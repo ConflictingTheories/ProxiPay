@@ -34,8 +34,8 @@ This will run docker and spin the containers - Note: You may need to edit the `n
 #### Other Links
 
 * Proxi Network: https://proxi.network
-* ProxiPay Demo: http://proxi.kderbyma.com
-* ProxiPay PayID: http://payid.kderbyma.com
+* ProxiPay Demo: http://proxi-001.kderbyma.com
+* ProxiPay PayID: http://payid-001.kderbyma.com
 
 #### References
 
