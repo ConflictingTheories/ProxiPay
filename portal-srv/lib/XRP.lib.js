@@ -70,6 +70,7 @@ const XRP_API = {
         };
         return XRP_API.sendRequest(rpcRequest, true);
     },
+    // Generate a PayID on the Server
     createPayID: (payidObj) => {
         return axios({
             method: 'post',
