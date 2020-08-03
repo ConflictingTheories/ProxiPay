@@ -1,0 +1,34 @@
+{
+    "name": "proxi-pay",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node bin/ProxiPay",
+        "build": "bash build-dist.sh",
+        "build-win": "./build-dist.ps1"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "compression": "^1.7.2",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.0",
+        "ejs": "^2.5.7",
+        "express": "^4.17.1",
+        "htmlparser2": "^3.9.2",
+        "md5": "^2.3.0",
+        "morgan": "^1.10.0",
+        "mysql2": "^2.1.0",
+        "node-cron": "^1.2.1",
+        "nodemon": "^1.18.5",
+        "request": "^2.83.0",
+        "request-promise": "^4.2.2",
+        "serve-favicon": "^2.5.0",
+        "xmldom": "^0.1.27",
+        "xpath": "0.0.24"
+    },
+    "devDependencies": {
+        "uglify-es": "^3.3.9",
+        "websocket": "^1.0.31",
+        "xpring-js": "^5.0.1"
+    }
+}

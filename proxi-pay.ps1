@@ -1,5 +1,8 @@
 $start = $pwd
 
+# Docker Network for the Containers
+docker network create proxi-network
+
 # Spins up Docker Containers for Each Component
 
 # Load Balancer (Public Facing)
@@ -7,17 +10,17 @@ Set-Location $start\nginx-lb
 docker-compose up -d
 
 # PayID Server 
-Set-Location $start\payid-server
+Set-Location $start\payid-srv
 docker build . -t payid
 docker-compose up -d 
 
 # Proxi Payment Portal / Dashboard
-Set-Location $start\proxi-pay-portal
+Set-Location $start\portal-srv
 docker build . -t proxi-pay
 docker-compose up -d
 
 # XRP Ripple Node (Lite)
-Set-Location $start\xrpl-server
+Set-Location $start\xrpl-srv
 docker build . -t xrpl
 docker-compose up -d
 

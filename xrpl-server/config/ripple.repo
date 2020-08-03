@@ -1,7 +1,0 @@
-[ripple-stable]
-name=XRP Ledger Packages
-baseurl=https://repos.ripple.com/repos/rippled-rpm/stable/
-enabled=1
-gpgcheck=0
-gpgkey=https://repos.ripple.com/repos/rippled-rpm/stable/repodata/repomd.xml.key
-repo_gpgcheck=1

@@ -1,0 +1,38 @@
+version: '3'
+services:
+  payid_server:
+    container_name: 'payid-server'
+    hostname: 'payid.proxi.lan'
+    image: payid:latest
+    restart: always
+    build:
+      context: .
+    ports:
+      - '8088:8080'
+      - '8081:8081'
+    depends_on:
+      - 'db'
+    environment:
+      - DB_PASSWORD=password
+      - DB_HOSTNAME=db
+    command:
+      [
+        '/opt/payid/scripts/wait-for-postgres.sh',
+        'db',
+        'node',
+        '/opt/payid/build/src/index.js',
+      ]
+  db:
+    container_name: payid-database
+    hostname: 'payid-db.proxi.lan'
+    image: postgres:12-alpine
+    restart: always
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=database_development
+networks:
+  default:
+    external: true
+    name: proxi-network

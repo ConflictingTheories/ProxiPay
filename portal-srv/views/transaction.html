@@ -1,0 +1,129 @@
+<!--
+/* ----------------------------- *\
+//                               \\
+//      ProxiPay - Platform      \\
+// ----------------------------- \\
+//    Copyright (c) 2020         \\
+//      -------------------      \\
+//      Kyle Derby MacInnis      \\
+// ----------------------------- \\
+// All Rights Reserved. Any Un-  \\
+// authorized disribution and/or \\
+// sale of this work is strictly \\
+// prohibited.                   \\
+\* ------------------------------ */ 
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%=title%>
+    </title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css'> -->
+    <link rel='stylesheet' href='/stylesheets/in-xrp.css'>
+    <link rel='stylesheet' href='/stylesheets/3rd-party.css'>
+    
+    
+    <!-- 3rd Party Javascript Libraries -->
+    <!-- <script src="/javascripts/lib/jquery.min.js"></script>
+    <script src="/javascripts/lib/dynamics.min.js"></script>
+    <script src="/javascripts/lib/qrcode.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <!-- App Logic -->
+    <!-- <script src="/javascripts/xrp/ProxiPay.js"></script> -->
+    <script src="/javascripts/ProxiPay.min.js"></script>
+</head>
+<style>
+    .textinput {
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid;
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <h1 style="width:100%">
+                <span style="padding-left:2em;color:darkslateblue;">
+                    XRP Transaction Viewer &nbsp;
+                </span>
+                <span style="float:right; padding-right:2em;">
+                    <input class="textinput" type="text" placeholder="Enter Transaction ID" id="txn_num">
+                    <button style="color:black" onclick="checkTxn()">VIEW TRANSACTION</button>
+                </span>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+
+            </div>
+            <div style="padding-left:2em" class="col-md-3">
+                <h2>
+                    TRANSACTION
+                </h2>
+                <label>Tranaction ID (QR Code)</label>
+                <div id="qrcode_txn"></div>
+                <br>
+                <label>Transaction</label>
+                <div id="txn"></div>
+            </div>
+            <div style="padding-left:2em;line-height:1.5em;" class="col-md-6">
+                <h2>
+                    TRANSACTION INFO
+                </h2>
+                <div id="output"></div>
+            </div>
+        </div>
+        <br>
+    </div>
+</body>
+<script>
+    let preloaded = '<%=preloaded%>';
+    if (preloaded) {
+        $('#txn_num').val(preloaded);
+        checkTxn();
+    }
+    var txnCode = null;
+
+    function checkTxn() {
+        let txn = $('#txn_num').val();
+        $.ajax({
+            url: "/api/check_txn/" + txn,
+            method: "get",
+            success: function(result) {
+                console.log(result.result)
+                let obj = result.result;
+                if (obj.error) {
+                    var txn_id = txn;
+                } else {
+                    var txn_id = txn;
+                }
+
+                // QR CODE
+                $("#qrcode_txn").html();
+                if (txnCode) {
+                    txnCode.clear();
+                    txnCode.makeCode(txn_id);
+                } else {
+                    txnCode = new QRCode(document.getElementById("qrcode_txn"), txn_id);
+                }
+
+                // DETAILS
+                $("#txn").text(txn_id);
+
+                // RAW OUTPUT
+                $("#output").text(JSON.stringify(result.result, undefined, 5));
+            }
+        });
+    }
+</script>
+
+</html>
