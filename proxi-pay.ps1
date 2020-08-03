@@ -4,6 +4,7 @@ $start = $pwd
 
 # Load Balancer (Public Facing)
 Set-Location $start\nginx-lb
+docker build . -t nginx
 docker-compose up -d
 
 # PayID Server 

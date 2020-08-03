@@ -3,6 +3,7 @@ declare -x start = $(pwd)
 
 # Spins up Docker Containers for Each Component
 cd $start/nginx-lb
+docker build . -t nginx
 docker-compose up -d
 
 cd $start/payid-srv
