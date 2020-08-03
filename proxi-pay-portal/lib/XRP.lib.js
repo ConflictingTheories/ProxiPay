@@ -36,9 +36,11 @@ wsClient.onopen = () => {
 }
 // Main API Object
 const XRP_API = {
+    // X Address Format (X....)
     toXaddress: (addr) => {
         return Utils.isValidClassicAddress(addr) ? Utils.encodeXAddress(addr) : Utils.isValidXAddress(addr) ? addr : false;
     },
+    // Classic Address (r....)
     toClassicAddress: (addr) => {
         return Utils.isValidClassicAddress(addr) ? addr : Utils.isValidXAddress(addr) ? Utils.decodeXAddress(addr) : false;
     },

@@ -326,6 +326,12 @@ function sendXrpPayment() {
         method: "post",
         data: paymentRequest,
         success: function (result) {
+            if(result.errorType && result.errorType === 5){
+                M.toast({
+                    html: 'Invalid Address - Double check it or make sure you send enough funds to open it (22 XRP)!'
+                })
+                return;
+            }
             console.log(result.result)
             let obj = result.result;
             if (obj.error) {

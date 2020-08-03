@@ -97,7 +97,7 @@ router.post('/send_payment/:tx/:rx/secret', function (req, res, next) {
     let recv = req.params.rx;
 
     const wallet = XRP_Wallet.generateWalletFromSeed(seed, true);
-    XRP_API.sendXrp(amount, recv, wallet).then((result) => {
+    XRP_API.sendXrp(amount, XRP_API.toXaddress(recv), wallet).then((result) => {
         res.json(result);
     }).catch((err) => res.json(err));
 });
