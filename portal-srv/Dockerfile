@@ -1,6 +1,6 @@
 FROM node:latest
 RUN apt install bash -y
-RUN npm install yarn nodemon --global
+RUN npm install nodemon --global
 RUN npm install uglifycss uglifyjs --global
 WORKDIR /app
 ADD . /app
