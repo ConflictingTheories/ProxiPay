@@ -19,7 +19,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var compression = require('compression');
+// var compression = require('compression');
 var DB = require('./lib/database.lib');
 
 // ---- ROUTES
@@ -51,7 +51,7 @@ app.use(cookieParser());
 // Public Directory
 app.use(express.static(path.join(__dirname, 'public')));
 // Compression
-app.use(compression);
+// app.use(compression);
 
 // ---- API ROUTES
 //

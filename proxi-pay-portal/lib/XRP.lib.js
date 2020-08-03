@@ -37,10 +37,10 @@ wsClient.onopen = () => {
 // Main API Object
 const XRP_API = {
     toXaddress: (addr) => {
-        return Utils.isValidClassicAddress(acctId) ? Utils.encodeXAddress(acctId) : Utils.isValidXAddress(acctId) ? acctId : false;
+        return Utils.isValidClassicAddress(addr) ? Utils.encodeXAddress(addr) : Utils.isValidXAddress(addr) ? addr : false;
     },
     toClassicAddress: (addr) => {
-        return Utils.isValidClassicAddress(acctId) ? acctId : Utils.isValidXAddress(acctId) ? Utils.decodeXAddress(acctId) : false;
+        return Utils.isValidClassicAddress(addr) ? addr : Utils.isValidXAddress(addr) ? Utils.decodeXAddress(addr) : false;
     },
     // Propose a Wallet
     gen_wallet: (algo) => {

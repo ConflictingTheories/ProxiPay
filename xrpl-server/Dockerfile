@@ -26,10 +26,11 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 
 RUN yum install -y glibc-common && yum clean all
 # Ripple Repo & Installation
+ADD ./config/startup.sh ./start.sh
 ADD ./config/ripple.repo /etc/yum.repos.d/ripple.repo
 RUN yum -y update
 RUN yum install rippled -y
 RUN mkdir /etc/cron.d -p && ln -s /opt/ripple/etc/update-rippled-cron /etc/cron.d/
 EXPOSE 5005 6005
 # Start Systemd & Services
-CMD ["/usr/sbin/init;", "systemctl", "daemon-reload;", "systemctl", "enable" "rippled;", "systemctl", "start" "rippled"]
+CMD ["./start.sh"]
