@@ -20,9 +20,9 @@ This will run docker and spin the containers - Note: You may need to edit the `n
 **Directories:**
 
 - `/nginx-lb` is the Load Balancer and Primary Public Interface
-- `/payid-server` is a fork of the PayID Repo - It provides the PayID functionality
-- `/proxi-pay-portal` is the ProxiPay portal and Public Dashboard
-- `/xrpl-server` is a Lite Ripple Node (For XRP Specifics like Trust Lines and Order Book Management)
+- `/payid-srv` is a fork of the PayID Repo - It provides the PayID functionality
+- `/portal-srv` is the ProxiPay portal and Public Dashboard
+- `/xrpl-srv` is a Lite Ripple Node (For XRP Specifics like Trust Lines and Order Book Management)
 
 
 **SECURITY DISCLAIMER: Use common sense. Make sure you always keep your seeds and private keys and passphrases secured. I will not be responsible for any loss of funds due to user mistake or ignorance or incompetence.**
