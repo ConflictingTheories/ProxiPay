@@ -17,7 +17,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { XRP_API, XRP_Wallet } = require('../lib/XRP.lib');
+const { XRP_API, XRP_Wallet, PAYID_DOMAIN } = require('../lib/XRP.lib');
 
 /* GET API List page. */
 router.get('/', function (req, res, next) {
@@ -33,7 +33,7 @@ router.get('/gen_wallet', async function (req, res, next) {
         return 'xxxxxxxx'.replace(/x/g, () => opts[~~((Math.random() * opts.length) % opts.length)]);
     })();
     const payidObj = {
-        "payId": `${payidprefix}$payid.kderbyma.com`,
+        "payId": `${payidprefix}$${PAYID_DOMAIN}`,
         "addresses": [
             {
                 "paymentNetwork": "XRPL",
@@ -52,7 +52,7 @@ router.get('/gen_wallet', async function (req, res, next) {
     }
     res.json({
         result: {
-            payid: `${payidprefix}$payid.kderbyma.com`,
+            payid: `${payidprefix}$${PAYID_DOMAIN}`,
             payidResult: payid || null,
             master_key: result.mnemonic,
             master_seed: result.wallet.privateKey,

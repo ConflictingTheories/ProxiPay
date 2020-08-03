@@ -11,6 +11,9 @@
 // prohibited.                   \\
 \* ------------------------------ */
 
+const API_URL="https://proxi.kderbyma.com"
+
+
 // WALLET GENERATOR FUNCTIONS
 // --------------------------
 // QR Codes
@@ -376,10 +379,10 @@ function sharePaymentLink() {
     let issuer = $('#issuerpayment').val();
     let cur = $('#cur-type').val();
     let amount = $('#cur-amount').val();
-    let paymentLink = "http:/proxi.kderbyma.com/send/" + cur + "/" + issuer + "/" + amount + "/" + recv;
+    let paymentLink = `${API_URL}/send/${cur}/${issuer}/${amount}/${recv}`;
 
     if (cur == "drops") {
-        paymentLink = "http://proxi.kderbyma.com/send/" + cur + "/_na_/" + amount + "/" + recv;
+        paymentLink = `${API_URL}/send/${cur}/_na_/${amount}/${recv}`;
     }
 
     if (cur && amount && (issuer || cur == "drops") && recv) {

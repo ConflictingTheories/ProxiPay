@@ -249,4 +249,4 @@ const XRP_API = {
 }
 
 
-module.exports = { XRP_API, XPRING_API: xrpClient, XRP_Wallet: Wallet, Utils: Utils };
+module.exports = { XRP_API, XPRING_API: xrpClient, XRP_Wallet: Wallet, Utils: Utils, PAYID_DOMAIN: Env.PAYID_DOMAIN };

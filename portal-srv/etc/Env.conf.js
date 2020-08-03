@@ -33,8 +33,10 @@ module.exports = {
     // XRP Lite Node (Docker Container)
     XRP_HOST: "xrpl_server",
     XRP_PORT: "5005",
-    XRP_PROTOCOL: "http://",
+    XRP_PROTOCOL: "https://",
     // Xpring SDK (Test Net)
     XPRING_HOST: "test.xrp.xpring.io",
     XPRING_PORT: "50051",
+    // PayID
+    PAYID_DOMAIN: "payid.kderbyma.com",
 };
