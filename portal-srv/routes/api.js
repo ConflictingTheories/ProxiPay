@@ -137,7 +137,7 @@ router.post('/send_xrp/:rx/secret', function (req, res, next) {
 router.get('/payid/:payid', async function (req, res, next) {
     let payid = req.params.payid;
     let result = await XRP_API.getPayIdInfo(payid);
-    res.json(result);
+    res.json(result.data);
 });
 
 

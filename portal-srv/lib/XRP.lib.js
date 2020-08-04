@@ -92,7 +92,7 @@ const XRP_API = {
                 };
                 console.log(JSON.stringify(reqOptions));
                 // Submit
-                resolve(axios(reqOptions))
+                resolve(axios(reqOptions).data)
             } else {
                 if (wsClient && wsClient.connected) {
                     wsClient.onmessage = (result) => {

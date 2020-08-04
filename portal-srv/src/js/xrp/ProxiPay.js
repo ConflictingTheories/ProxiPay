@@ -120,17 +120,17 @@ function checkAccount(loaded) {
                 M.toast({
                     html: 'PayID Found - Receiver Set!'
                 })
-                fetchDetails(addr);
+                fetchDetails(addr,loaded);
             }
         })
     } else {
         payidInUse = false;
-        fetchDetails(acct);
+        fetchDetails(acct,loaded);
     }
 };
 
 // Fetch Account Info
-function fetchDetails(acct) {
+function fetchDetails(acct,loaded) {
     if (!loaded) {
         document.location = "/account/" + acct;
     } else {
