@@ -70,6 +70,7 @@ router.get('/check_acct/:id', async function (req, res, next) {
     let acctId = req.params.id;
     XRP_API.account_info(XRP_API.toClassicAddress(acctId))
         .then((result) => {
+            console.log(result);
             res.json(result);
         })
         .catch((err) => res.json(err))
